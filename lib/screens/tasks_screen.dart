@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_manager_app/constants/routes.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -33,7 +34,9 @@ class TasksScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRoutes.editTaskScreen);
+                              },
                               child: Icon(Icons.mode_edit, color: Colors.greenAccent),
                             ),
                             SizedBox(width: 8.w),

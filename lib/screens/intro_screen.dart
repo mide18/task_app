@@ -12,7 +12,6 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-
   String task = "";
   final _formKey = GlobalKey<FormState>();
   final _focusScopeNode = FocusScopeNode();
@@ -32,13 +31,15 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
         automaticallyImplyLeading: true,
       ),
-      body: Container(height: 200.h,
+      body: Container(
+        height: 200.h,
         child: Center(
             child: Card(
           elevation: 1,
           child: Padding(
             padding: EdgeInsets.all(10.r),
-            child: Form(key: _formKey,
+            child: Form(
+              key: _formKey,
               child: Column(
                 children: [
                   Text(
@@ -74,10 +75,11 @@ class _IntroScreenState extends State<IntroScreen> {
                         focusedBorder: focusOutline(),
                         border: enableOutline(),
                         enabledBorder: enableOutline(),
-                    hintText: 'e.g. wash the dishes'
-                    ),
+                        hintText: 'e.g. wash the dishes'),
                   ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.blueAccent,
@@ -86,10 +88,11 @@ class _IntroScreenState extends State<IntroScreen> {
                     height: 41.h,
                     child: TextButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()){
+                        if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
 
-Navigator.of(context).pushNamed(AppRoutes.tasksScreen);
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.tasksScreen);
                         }
                       },
                       child: Text(
