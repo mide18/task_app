@@ -1,4 +1,4 @@
-import 'package:task_manager_app/models/error_model/error_response_model.dart';
+import 'package:task_manager_app/core/models/error_model/error_response_model.dart';
 
 class AppException implements Exception {
   final ErrorResponseModel error;

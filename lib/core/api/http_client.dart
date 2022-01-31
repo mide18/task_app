@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'package:task_manager_app/constants/components.dart';
 import 'package:task_manager_app/core/api/exceptions/exceptions.dart';
-import 'package:task_manager_app/models/error_model/data.dart';
-import 'package:task_manager_app/models/error_model/error_response_model.dart';
+import 'package:task_manager_app/core/models/error_model/data.dart';
+import 'package:task_manager_app/core/models/error_model/error_response_model.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'json_parser.dart';
