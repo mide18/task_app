@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 
+// siyonna baseurl
+const kBaseUrl = 'https://siyonna-api.herokuapp.com/api/v1';
+
 // Form Error
 final RegExp emailValidatorRegExp =
 RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
