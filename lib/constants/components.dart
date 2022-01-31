@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+
+// Form Error
+final RegExp emailValidatorRegExp =
+RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
 OutlineInputBorder enableOutline() {
   return OutlineInputBorder(
     borderSide:

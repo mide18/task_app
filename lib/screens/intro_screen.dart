@@ -12,7 +12,9 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  String task = "";
+  String email = "";
+  String password = "";
+
   final _formKey = GlobalKey<FormState>();
   final _focusScopeNode = FocusScopeNode();
 
@@ -31,85 +33,121 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
         automaticallyImplyLeading: true,
       ),
-      body: Container(
-        height: 200.h,
-        child: Center(
-            child: Card(
-          elevation: 1,
-          child: Padding(
-            padding: EdgeInsets.all(10.r),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Text(
-                    'Task Manager',
-                    style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextFormField(
-                    onSaved: (newValue) {
-                      if (newValue == null) {
-                        return;
-                      }
-                      task = newValue;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Please fill an item";
-                      } else {
-                        value = task;
-                        return null;
-                      }
-                    },
-                    onEditingComplete: () {
-                      _focusScopeNode.nextFocus();
-                    },
-                    decoration: InputDecoration(
-                        isDense: true,
-                        focusedBorder: focusOutline(),
-                        border: enableOutline(),
-                        enabledBorder: enableOutline(),
-                        hintText: 'e.g. wash the dishes'),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blueAccent,
-                        borderRadius: BorderRadius.circular(6)),
-                    width: 140.w,
-                    height: 41.h,
-                    child: TextButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
+      body: Center(
+          child: Card(
+        elevation: 1,
+        child: Padding(
+          padding: EdgeInsets.all(10.r),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Text(
+                  'Email',
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                TextFormField(
+                  onSaved: (newValue) {
+                    if (newValue == null) {
+                      return;
+                    }
+                    email = newValue;
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please fill an item";
+                    } else if (!emailValidatorRegExp.hasMatch(value)) {
+                      return "please input a valid email";
+                    } else {
+                      value = email;
+                      return null;
+                    }
+                  },
+                  onEditingComplete: () {
+                    _focusScopeNode.nextFocus();
+                  },
+                  decoration: InputDecoration(
+                      isDense: true,
+                      focusedBorder: focusOutline(),
+                      border: enableOutline(),
+                      enabledBorder: enableOutline(),
+                      hintText: 'e.g. john@yahoo.com'),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Text(
+                  'Password',
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                TextFormField(
+                  onSaved: (newValue) {
+                    if (newValue == null) {
+                      return;
+                    }
+                    password = newValue;
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please fill an item";
+                    } else {
+                      value = password;
+                      return null;
+                    }
+                  },
+                  onEditingComplete: () {
+                    _focusScopeNode.nextFocus();
+                  },
+                  decoration: InputDecoration(
+                      isDense: true,
+                      focusedBorder: focusOutline(),
+                      border: enableOutline(),
+                      enabledBorder: enableOutline(),
+                      hintText: 'e.g. wash the dishes'),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(6)),
+                  width: 140.w,
+                  height: 41.h,
+                  child: TextButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
 
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.tasksScreen);
-                        }
-                      },
-                      child: Text(
-                        'Submit',
-                        style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700),
-                      ),
+                        Navigator.of(context).pushNamed(AppRoutes.tasksScreen);
+                      }
+                    },
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
-        )),
-      ),
+        ),
+      )),
     );
   }
 }
