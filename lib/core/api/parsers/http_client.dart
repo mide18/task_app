@@ -8,7 +8,6 @@ class RequestRest {
   //payload is mapped with string/dynamic.
   final Map<String, dynamic>? payload;
 
-
   RequestRest({
     required this.endpoint,
     this.payload = const {},
@@ -16,7 +15,6 @@ class RequestRest {
 
   //Post Request API
   Future<T> executePostRequest<T>(JsonParser<T> parser,
-
       {String? authToken}) async {
     final Map<String, String>? header = authToken == null
         ? {"Content-Type": "application/json*", "Accept": "application/json"}
@@ -86,3 +84,4 @@ class RequestRest {
       throw "Unable to connect to Siyonna";
     }
   }
+}
