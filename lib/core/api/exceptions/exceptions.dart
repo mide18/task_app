@@ -1,4 +1,5 @@
-import 'package:ecommerce_app/core/api/error_model/error_model.dart';
+import 'package:ecommerce_app/core/models/api/error_model/error_response_model.dart';
+
 
 class AppException implements Exception {
   final ErrorModel error;
