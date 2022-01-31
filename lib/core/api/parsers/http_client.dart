@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'package:task_manager_app/constants/components.dart';
 import 'package:task_manager_app/core/api/exceptions/exceptions.dart';
+import 'package:task_manager_app/models/error_model/data.dart';
+import 'package:task_manager_app/models/error_model/error_response_model.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'json_parser.dart';
@@ -54,17 +56,17 @@ class RequestRest {
           return parser.parseFromJson(response.body);
         case 400:
         case 401:
-          throw UnAuthorisedException(ErrorModel.fromJson(response.body));
+          throw UnAuthorisedException(ErrorResponseModel.fromJson(response.body));
         case 403:
           throw "Sorry, you can only update your own profile.";
         case 405:
           throw "new Error";
         case 419:
-          throw TokenMismatchException(ErrorModel.fromJson(response.body));
+          throw TokenMismatchException(ErrorResponseModel.fromJson(response.body));
         case 422:
-          throw UnProcessableEntity(ErrorModel.fromJson(response.body));
+          throw UnProcessableEntity(ErrorResponseModel.fromJson(response.body));
         case 500:
-          throw ServerError(ErrorModel(
+          throw ServerError(ErrorResponseModel(
               data: Data(
             error: "Internal Server Error",
             status: 'Unsuccessful',
@@ -72,7 +74,7 @@ class RequestRest {
         default:
           print(response.statusCode);
           throw FetchDataException(
-            ErrorModel(
+            ErrorResponseModel(
               data: Data(
                 error: "Internal Server Error",
                 status: 'Unsuccessful',

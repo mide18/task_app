@@ -2,21 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'avatar.dart';
-import 'gender.dart';
-import 'phone__number.dart';
-import 'provider__name.dart';
+
 
 class User {
   final String id;
   final String first_name;
   final String last_name;
   final String email;
-  final Avatar avatar;
-  final Phone_number phone_number;
-  final Gender gender;
+  final String avatar;
+  final String phone_number;
+  final String gender;
   final String type;
-  final Provider_name provider_name;
+  final String provider_name;
   final String email_verified_at;
   final String created_at;
   final String updated_at;
@@ -42,11 +39,11 @@ class User {
     String? first_name,
     String? last_name,
     String? email,
-    Avatar? avatar,
-    Phone_number? phone_number,
-    Gender? gender,
+    String? avatar,
+    String? phone_number,
+    String? gender,
     String? type,
-    Provider_name? provider_name,
+    String? provider_name,
     String? email_verified_at,
     String? created_at,
     String? updated_at,
@@ -75,11 +72,11 @@ class User {
       'first_name': first_name,
       'last_name': last_name,
       'email': email,
-      'avatar': avatar.toMap(),
-      'phone_number': phone_number.toMap(),
-      'gender': gender.toMap(),
+      'avatar': avatar,
+      'phone_number': phone_number,
+      'gender': gender,
       'type': type,
-      'provider_name': provider_name.toMap(),
+      'provider_name': provider_name,
       'email_verified_at': email_verified_at,
       'created_at': created_at,
       'updated_at': updated_at,
@@ -93,11 +90,11 @@ class User {
       first_name: map['first_name'] ?? '',
       last_name: map['last_name'] ?? '',
       email: map['email'] ?? '',
-      avatar: Avatar.fromMap(map['avatar']),
-      phone_number: Phone_number.fromMap(map['phone_number']),
-      gender: Gender.fromMap(map['gender']),
+      avatar: map['avatar'] ?? '',
+      phone_number: map['phone_number'] ?? '',
+      gender: map['gender'] ?? '',
       type: map['type'] ?? '',
-      provider_name: Provider_name.fromMap(map['provider_name']),
+      provider_name: map['provider_name'] ?? '',
       email_verified_at: map['email_verified_at'] ?? '',
       created_at: map['created_at'] ?? '',
       updated_at: map['updated_at'] ?? '',

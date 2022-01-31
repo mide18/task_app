@@ -1,8 +1,7 @@
-import 'package:ecommerce_app/core/models/api/error_model/error_response_model.dart';
-
+import 'package:task_manager_app/models/error_model/error_response_model.dart';
 
 class AppException implements Exception {
-  final ErrorModel error;
+  final ErrorResponseModel error;
   final prefix;
 
   AppException({required this.error, required this.prefix});
@@ -15,30 +14,30 @@ class AppException implements Exception {
 //500 internal server error
 
 class Forbidden extends AppException {
-  Forbidden(ErrorModel error) : super(prefix: "Forbidden", error: error);
+  Forbidden(ErrorResponseModel error) : super(prefix: "Forbidden", error: error);
 }
 
 class UnAuthorisedException extends AppException {
-  UnAuthorisedException(ErrorModel error)
+  UnAuthorisedException(ErrorResponseModel error)
       : super(prefix: "UnAuthorized", error: error);
 }
 
 class TokenMismatchException extends AppException {
-  TokenMismatchException(ErrorModel error)
+  TokenMismatchException(ErrorResponseModel error)
       : super(prefix: "Token mismatch ", error: error);
 }
 
 class ServerError extends AppException {
-  ServerError(ErrorModel error) : super(prefix: "Server error", error: error);
+  ServerError(ErrorResponseModel error) : super(prefix: "Server error", error: error);
 }
 
 class FetchDataException extends AppException {
-  FetchDataException(ErrorModel error)
+  FetchDataException(ErrorResponseModel error)
       : super(prefix: "Fetch Data Exception", error: error);
 }
 
 class UnProcessableEntity extends AppException {
-  UnProcessableEntity(ErrorModel error)
+  UnProcessableEntity(ErrorResponseModel error)
       : super(prefix: "UnProcessable Entity", error: error);
 }
 
