@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_manager_app/screens/intro_screen.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import 'constants/routes.dart';
 import 'core/logger.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
               // home: SellerWalletScreen(),
-              home: IntroScreen(),
+              home: LoaderOverlay(child: IntroScreen()),
               //home:CupertinoDrawer()
             )
           : MaterialApp(
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
                 );
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
-              home: IntroScreen(),
+              home: LoaderOverlay(child: IntroScreen()),
             ),
     );
   }

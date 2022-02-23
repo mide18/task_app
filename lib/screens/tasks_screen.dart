@@ -9,7 +9,13 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),),
+        iconTheme: IconThemeData(color: Colors.black), actions: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Icon(Icons.notifications_none),
+          ),
+
+        ],),
       body: ListView.builder(
           shrinkWrap: true,
           itemCount: 4,
