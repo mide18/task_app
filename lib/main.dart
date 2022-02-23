@@ -4,18 +4,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_manager_app/core/services/local_notification_service.dart';
 import 'package:task_manager_app/screens/intro_screen.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:task_manager_app/screens/tasks_screen.dart';
+
 
 import 'constants/routes.dart';
 import 'core/logger.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   runApp(ProviderScope(
     child: MyApp(),
     observers: [Logger()],
   ));
 }
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -48,6 +57,9 @@ class MyApp extends StatelessWidget {
                 );
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
+        routes: {
+                "task": (_) => TasksScreen()
+        },
               // home: SellerWalletScreen(),
               home: LoaderOverlay(child: IntroScreen()),
               //home:CupertinoDrawer()
@@ -76,8 +88,17 @@ class MyApp extends StatelessWidget {
                 );
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
+        routes: {
+          "task": (_) => TasksScreen()
+        },
               home: LoaderOverlay(child: IntroScreen()),
             ),
     );
   }
+}
+
+// recieves message when app is in background
+Future<void> backgroundHandler(RemoteMessage message) async {
+  print(message.data.toString());
+  print(message.notification!.title);
 }

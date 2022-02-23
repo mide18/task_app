@@ -9,8 +9,10 @@ import 'package:task_manager_app/constants/custom_icons_icons.dart';
 import 'package:task_manager_app/constants/routes.dart';
 import 'package:task_manager_app/core/api/request_state.dart';
 import 'package:task_manager_app/core/models/login_model/login_response_model.dart';
+import 'package:task_manager_app/core/services/local_notification_service.dart';
 import 'package:task_manager_app/notifer/login_notifier.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -25,6 +27,45 @@ class _IntroScreenState extends State<IntroScreen> {
 
   final _formKey = GlobalKey<FormState>();
   final _focusScopeNode = FocusScopeNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    LocalNotificationService.initialize(context);
+// gives message on which the user taps and open the app from terminated state
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      final routeFromMessage = message!.data['route'];
+
+      Navigator.pushNamed(context, routeFromMessage);
+    });
+
+    //works when the app is in foreground
+    FirebaseMessaging.onMessage.listen((message) {
+      if (message.notification != null) {
+        print(message.notification!.title);
+        print(message.notification!.body);
+      }
+      LocalNotificationService.display(message);
+    });
+
+    // works when app is in background, but opened and user taps on notification
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+    final routeFromMessage = message.data['route'];
+    
+    Navigator.pushNamed(context, routeFromMessage);
+
+    print(routeFromMessage);
+    });
+
+////from comments
+    FirebaseMessaging.instance.requestPermission().then((value) {
+      print(value);});
+    FirebaseMessaging.instance.getToken().then((token){
+      print(token);});
+    FirebaseMessaging.instance.getAPNSToken().then((APNStoken){
+      print(APNStoken);});
+  }
 
   @override
   Widget build(BuildContext context) {
