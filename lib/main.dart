@@ -10,6 +10,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:task_manager_app/screens/tasks_screen.dart';
+//import 'firebase_options.dart';
 
 
 import 'constants/routes.dart';
@@ -17,13 +18,16 @@ import 'core/logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+     // options: DefaultFirebaseOptions.currentPlatform
+  );
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   runApp(ProviderScope(
     child: MyApp(),
     observers: [Logger()],
   ));
 }
+
 
 
 class MyApp extends StatelessWidget {

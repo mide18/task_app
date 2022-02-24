@@ -59,13 +59,13 @@ class _IntroScreenState extends State<IntroScreen> {
     });
 
 ////from comments
-    FirebaseMessaging.instance.requestPermission().then((value) {
-      print(value);});
-    FirebaseMessaging.instance.getToken().then((token){
-      print(token);});
-    FirebaseMessaging.instance.getAPNSToken().then((APNStoken){
-      print(APNStoken);});
-  }
+//     FirebaseMessaging.instance.requestPermission().then((value) {
+//       print(value);});
+//     FirebaseMessaging.instance.getToken().then((token){
+//       print(token);});
+//     FirebaseMessaging.instance.getAPNSToken().then((APNStoken){
+//       print(APNStoken);});
+   }
 
   @override
   Widget build(BuildContext context) {
