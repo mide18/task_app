@@ -205,7 +205,7 @@ packages:
     source: hosted
     version: "6.1.2"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -226,7 +226,7 @@ packages:
     source: hosted
     version: "1.5.4"
   firebase_messaging:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
@@ -259,7 +259,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_local_notifications:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
@@ -388,7 +388,7 @@ packages:
     source: hosted
     version: "4.1.4"
   loader_overlay:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: loader_overlay
       url: "https://pub.dartlang.org"
